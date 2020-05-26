@@ -58,7 +58,7 @@ const ScrollableContent: React.FC<ScrollableContentProps> = ({
     extrapolate: Animated.Extrapolate.CLAMP,
   });
   const opacity = Animated.interpolate(scrollY!, {
-    inputRange: [-headerHeight! / 2, 0, headerHeight! / 2],
+    inputRange: [-headerHeight! / 2, 0, headerHeight! / 1.5],
     outputRange: [0, 1, 0],
     extrapolateLeft: Animated.Extrapolate.CLAMP,
   });

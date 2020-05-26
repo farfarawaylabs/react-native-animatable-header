@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  View,
   StyleSheet,
   StyleProp,
   ViewStyle,
   ImageProps,
-  Dimensions,
   Image,
 } from 'react-native';
 

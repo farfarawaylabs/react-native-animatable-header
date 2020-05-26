@@ -1,25 +1,10 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-} from 'react-native';
+import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 interface CollapsedHeadrProps {
   /** The background color to use. Defaults to '#000' */
   backgroundColor?: string;
-
-  /** The title to show */
-  title?: string;
-
-  /** The color of the title. Defaults to '#FFF */
-  titleColor?: string;
-
-  /** Additional styles or override default styles for the header title */
-  titleStyle?: StyleProp<TextStyle>;
 
   /** The height of the header when it is collapsed. Defaults to 30% of the header height */
   collapsedHeight?: number;
@@ -39,13 +24,11 @@ interface CollapsedHeadrProps {
 /** description */
 const CollapsedHeadr: React.FC<CollapsedHeadrProps> = ({
   backgroundColor = '#000',
-  title,
-  titleColor = '#FFF',
-  titleStyle,
   collapsedHeight,
   style,
   scrollY,
   headerHeight,
+  children,
   ...rest
 }) => {
   const collapsedHeaderHeight = collapsedHeight
@@ -71,9 +54,21 @@ const CollapsedHeadr: React.FC<CollapsedHeadrProps> = ({
       ]}
       {...rest}
     >
-      <Text style={[styles.title, { color: titleColor }, titleStyle]}>
-        {title}
-      </Text>
+      {React.Children.map(children, (currChild) => {
+        if (
+          currChild &&
+          currChild.type &&
+          currChild.type.name === 'CollapsedHeaderTitle'
+        ) {
+          return React.cloneElement(currChild, {
+            headerHeight,
+            collapsedHeaderHeight,
+            scrollY,
+          });
+        } else {
+          return currChild;
+        }
+      })}
     </Animated.View>
   );
 };
@@ -85,12 +80,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingTop: 50,
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: '400',
+    justifyContent: 'space-between',
   },
 });
 

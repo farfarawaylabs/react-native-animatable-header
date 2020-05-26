@@ -3,6 +3,8 @@ import { StyleSheet, View, Text } from 'react-native';
 import {
   AnimatableHeader,
   CollapsedHeader,
+  CollapsedHeaderTitle,
+  CollapsedHeaderSection,
   HeaderBackground,
   ScrollableContent,
 } from '@farfarawaylabs/react-native-animatable-header';
@@ -45,7 +47,11 @@ export default function App() {
             );
           })}
         </ScrollableContent>
-        <CollapsedHeader title="Great Title" />
+        <CollapsedHeader>
+          <CollapsedHeaderSection />
+          <CollapsedHeaderTitle title="Great Title" />
+          <CollapsedHeaderSection />
+        </CollapsedHeader>
       </AnimatableHeader>
     </View>
   );
