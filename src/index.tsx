@@ -1,9 +1,11 @@
-import { NativeModules } from 'react-native';
+import AnimatableHeader from './components/AnimatableHeader';
+import CollapsedHeader from './components/CollapsedHeader';
+import HeaderBackground from './components/HeaderBackground';
+import ScrollableContent from './components/ScrollableContent';
 
-type ReactNativeAnimatableHeaderType = {
-  multiply(a: number, b: number): Promise<number>;
+export {
+  AnimatableHeader,
+  CollapsedHeader,
+  HeaderBackground,
+  ScrollableContent,
 };
-
-const { ReactNativeAnimatableHeader } = NativeModules;
-
-export default ReactNativeAnimatableHeader as ReactNativeAnimatableHeaderType;
